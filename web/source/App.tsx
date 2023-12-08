@@ -1,9 +1,9 @@
-import './App.css'
-
+//import './App.css'
+import "./styles/global.css";
 function App() {
 
 	return (
-		<h1>Hello Hailes</h1>
+		<div className="bg-zinc-900 mt-10 hover:bg-red-500">Hello Hailes</div>
 	)
 }
 
