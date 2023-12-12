@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model Contact {
+    id      Int     @id @default(autoincrement())
+    email   String  @unique
+    phone   String
+    address String
+    site    String?
+
+    company Company?
+
+    @@map("contacts")
+}
+
+model Coordinat {
+    id               String  @id @default(cuid())
+    latitude         BigInt
+    longitude        BigInt
+    altitude         BigInt?
+    accuracy         BigInt?
+    altitudeAccuracy BigInt?
+    heading          BigInt?
+    speed            BigInt?
+
+    company Company?
+
+    @@map("coordinates")
+}
+
+model Company {
+    id          String   @id @default(cuid())
+    contactId   Int      @unique
+    coordinatId String   @unique
+    name        String
+    nif         String
+    logotipo    String?
+    active      Boolean
+    createdAt   DateTime @default(now())
+
+    contact     Contact      @relation(fields: [contactId], references: [id])
+    coordinat   Coordinat    @relation(fields: [coordinatId], references: [id])
+    employees   Employee[]
+    points      Point[]
+    departments Department[]
+
+    @@map("companies")
+}
+
+model Department {
+    id        Int    @id @default(autoincrement())
+    companyId String
+    name      String
+
+    company   Company    @relation(fields: [companyId], references: [id])
+    employees Employee[]
+
+    @@map("departments")
+}
+
+model Employee {
+    id           String   @id @default(cuid())
+    biNumber     String
+    companyId    String
+    departmentId Int
+    role         String
+    fullName     String
+    dateOfBirth  DateTime
+    gender       Boolean
+    email        String   @unique
+    password     String   @unique
+    active       Boolean
+
+    company    Company    @relation(fields: [companyId], references: [id])
+    department Department @relation(fields: [departmentId], references: [id])
+
+    @@map("employees")
+}
+
+model Point {
+    id            String    @id @default(uuid())
+    companyId     String
+    getIn         DateTime
+    getOut        DateTime?
+    getInToLunch  DateTime?
+    getOutToLunch DateTime?
+    observation   String?
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime?
+
+    company Company @relation(fields: [companyId], references: [id])
+
+    @@map("points")
+}
