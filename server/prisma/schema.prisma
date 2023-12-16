@@ -12,6 +12,7 @@ datasource db {
 
 generator erd {
     provider = "prisma-erd-generator"
+    theme    = "dark"
 }
 
 model Contact {
@@ -27,14 +28,14 @@ model Contact {
 }
 
 model Coordinat {
-    id               String  @id @default(cuid())
-    latitude         BigInt
-    longitude        BigInt
-    altitude         BigInt?
-    accuracy         BigInt?
-    altitudeAccuracy BigInt?
-    heading          BigInt?
-    speed            BigInt?
+    id               String @id @default(cuid())
+    latitude         Int
+    longitude        Int
+    altitude         Int?
+    accuracy         Int?
+    altitudeAccuracy Int?
+    heading          Int?
+    speed            Int?
 
     company Company?
 
@@ -86,6 +87,7 @@ model Employee {
 
     company    Company    @relation(fields: [companyId], references: [id])
     department Department @relation(fields: [departmentId], references: [id])
+    Point      Point[]
 
     @@map("employees")
 }
@@ -93,6 +95,7 @@ model Employee {
 model Point {
     id            String    @id @default(uuid())
     companyId     String
+    employeeId    String
     getIn         DateTime
     getOut        DateTime?
     getInToLunch  DateTime?
@@ -101,7 +104,8 @@ model Point {
     createdAt     DateTime  @default(now())
     updatedAt     DateTime?
 
-    company Company @relation(fields: [companyId], references: [id])
+    company  Company  @relation(fields: [companyId], references: [id])
+    employee Employee @relation(fields: [employeeId], references: [id])
 
     @@map("points")
 }
