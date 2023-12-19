@@ -69,6 +69,7 @@ async function main() {
 			logotipo: faker.image.urlLoremFlickr({ category: 'business' }),
 			active: faker.datatype.boolean({ probability: 0.75 }),
 			createdAt: new Date(),
+			updatedAt: null
 		};
 
 		companies.push(company);

@@ -28,7 +28,7 @@ model Contact {
 }
 
 model Coordinat {
-    id               String @id @default(cuid())
+    id               String @id @default(uuid())
     latitude         Int
     longitude        Int
     altitude         Int?
@@ -43,14 +43,15 @@ model Coordinat {
 }
 
 model Company {
-    id          String   @id @default(cuid())
-    contactId   Int      @unique
-    coordinatId String   @unique
+    id          String    @id @default(uuid())
+    contactId   Int       @unique
+    coordinatId String    @unique
     name        String
     nif         String
     logotipo    String?
     active      Boolean
-    createdAt   DateTime @default(now())
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime?
 
     contact     Contact      @relation(fields: [contactId], references: [id])
     coordinat   Coordinat    @relation(fields: [coordinatId], references: [id])
@@ -73,7 +74,7 @@ model Department {
 }
 
 model Employee {
-    id           String   @id @default(cuid())
+    id           String   @id @default(uuid())
     biNumber     String
     companyId    String
     departmentId Int
