@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { Header } from '../components/Header';
 
 
 export function Home() {
 	return (
-		<View >
-			<Text>Hailes Mauricio 🚀</Text>
+		<View className='flex-1 bg-black'>
+			<Header></Header>
+			<Text >Hailes Mauricio 🚀</Text>
+			{/* <Button title='haiels' >Hailes</Button> */}
 		</View>
 	);
 }
