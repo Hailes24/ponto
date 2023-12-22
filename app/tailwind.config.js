@@ -4,7 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        backgroundColor: '#FFFFFF'
+        appwhite: '#FFFFFF',
+        appwhitelow: '#F3F6FA',
+        appblack: '#282A31',
+        appblue: '#3D70FF',
+        appbluelight: '#7598FD',
+        appgreen: '#53B052',
       },
       fontFamily: {
         regular: 'Inter_400Regular',
