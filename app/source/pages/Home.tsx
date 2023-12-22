@@ -43,16 +43,13 @@ export function Home() {
 				<View className='flex-row flex-wrap'>
 					{
 						allDaysOfYear.map((day) => (
-							<WorkDay key={day.toISOString()} />
+							<WorkDay isPast={true} day={day} key={day.toISOString()} />
 						))
 					}
 
 					{
 						amountOfDaysToFill > 0 && Array.from({ length: amountOfDaysToFill }).map((_, index) => (
-							<View
-								className="bg-appbluelight rounded-lg border-2 m-1 border-zinc-800 opacity-40"
-								style={{ width: DAY_SIZE, height: DAY_SIZE }}
-							/>
+							<WorkDay isPast={false} key={index} />
 						))
 					}
 				</View>
