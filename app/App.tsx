@@ -1,4 +1,5 @@
 // import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler'
 import { StatusBar } from 'react-native';
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold } from "@expo-google-fonts/inter";
 import { Loading } from "./source/components/Loading";
