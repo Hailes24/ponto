@@ -3,7 +3,8 @@ export declare global {
 	namespace ReactNavigation {
 		interface RootParamList {
 			home: undefined;
-			statistic: undefined;
+			insert: undefined;
+			statistics: undefined;
 		}
 	}
 }

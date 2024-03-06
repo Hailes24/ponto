@@ -12,7 +12,7 @@ export function Header() {
 			<TouchableOpacity
 				activeOpacity={0.7}
 				className='flex-row h-14 p-4 border border-blue-500 rounded-lg items-center'
-				onPress={() => navigate("statistic")}
+				onPress={() => navigate("statistics")}
 			>
 				<FontAwesome name='pie-chart' color={'#3D70FF'} size={20} />
 				<Text className='text-appblack ml-3 font-semibold text-base'>Estatistica</Text>

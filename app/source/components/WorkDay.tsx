@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, View, Text, Dimensions } from "react-native";
 
 const WEEK_DAYS = 7;
@@ -44,6 +45,10 @@ function getMonthAbv(index: Month) {
 }
 
 export function WorkDay({ isPast, day }: Props) {
+
+
+	const { navigate } = useNavigation();
+
 	return (
 		<>
 			{
@@ -53,6 +58,7 @@ export function WorkDay({ isPast, day }: Props) {
 						className="bg-appblue rounded-lg m-1"
 						style={{ width: DAY_SIZE, height: DAY_SIZE }}
 						activeOpacity={0.7}
+						onPress={() => navigate("insert")}
 					>
 						<Text className="text-appwhite text-xs align-middle text-center justify-center">{day?.getDate() + "\n" + getMonthAbv(day?.getMonth() as Month)}</Text>
 					</TouchableOpacity>
